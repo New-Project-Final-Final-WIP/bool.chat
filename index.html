@@ -1,8 +1,9 @@
 <head>
 	<title>Boolchat</title>
-	<link rel="shortcut icon" href="https://newweb.page/assets/images/logo.png">
+	<link rel="shortcut icon" href="https://www.newweb.page/assets/images/logo.png">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
+		var boolchatWS;
 		function updateTheme(){
 			if(localStorage.getItem("dark")=="true"){
 				$('body').attr("dark",true)
@@ -10,11 +11,22 @@
 				$('body').removeAttr("dark")
 			}
 		}
-		boolchatWS = new WebSocket("wss://logix.newweb.page/boolchat");
-		boolchatWS.onmessage = function (event) {
-			$("#boolchat").prop('checked',(event.data.toLowerCase()=="true"))
-			$("#boolchat").attr('title', event.data);
+		function connect() {
+			boolchatWS = new WebSocket('wss://logix.newweb.page/boolchat');
+			boolchatWS.onmessage = function (event) {
+				$("#boolchat").prop('checked',(event.data.toLowerCase()=="true"))
+				$("#boolchat").attr('title', event.data);
+			}
+			boolchatWS.onclose = function(e) {
+				console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+				setTimeout(function() {
+					connect();
+				}, 1000);
+			};
 		}
+
+		connect();
+
 		$(document).ready(function() {
 			updateTheme();
 			$(document).click(function(event) { 
