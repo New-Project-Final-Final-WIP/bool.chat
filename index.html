@@ -1,10 +1,19 @@
 <head>
 	<title>Boolchat</title>
 	<link rel="shortcut icon" href="https://www.newweb.page/assets/images/logo.png">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="apple-touch-icon" href="https://www.newweb.page/assets/images/logo.png">
+	<meta name="apple-mobile-web-app-status-bar" content="#EEEEEE">
+	<meta name="theme-color" content="#EEEEEE">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
+		if('serviceWorker' in navigator){
+		navigator.serviceWorker.register('/sw.js')
+			.then(reg => console.log('service worker registered'))
+			.catch(err => console.log('service worker not registered', err));
+		}
 		var boolchatWS;
-		function updateTheme(){
+		function await updateTheme(){
 			if(localStorage.getItem("dark")=="true"){
 				$('body').attr("dark",true)
 			} else {
@@ -30,15 +39,15 @@
 		$(document).ready(function() {
 			updateTheme();
 			$(document).click(function(event) { 
-			  var $target = $(event.target);
-			  if(!$target.closest('#clickStop').length) {
-			    localStorage.setItem("dark",localStorage.getItem("dark")!="true");
-			    updateTheme();
-			  }        
+			var $target = $(event.target);
+			if(!$target.closest('#clickStop').length) {
+				localStorage.setItem("dark",localStorage.getItem("dark")!="true");
+				updateTheme();
+				}
 			});
 			$("#boolchat").click(function() {
-			  $("#boolchat").attr('title', this.checked.toString());
-			  boolchatWS.send(this.checked)
+				$("#boolchat").attr('title', this.checked.toString());
+				boolchatWS.send(this.checked)
 			});
 		});
 	</script>
