@@ -1,29 +1,8 @@
 <head>
 	<title>Boolchat</title>
+	<link rel="shortcut icon" href="https://newweb.page/assets/images/logo.png">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-		(function() { //
-		  var hidden = "hidden";
-		  // Standards:
-		  if (hidden in document)
-		    document.addEventListener("visibilitychange", onchange);
-		  else if ((hidden = "mozHidden") in document)
-		    document.addEventListener("mozvisibilitychange", onchange);
-		  else if ((hidden = "webkitHidden") in document)
-		    document.addEventListener("webkitvisibilitychange", onchange);
-		  else if ((hidden = "msHidden") in document)
-		    document.addEventListener("msvisibilitychange", onchange);
-		  // IE 9 and lower:
-		  else if ("onfocusin" in document)
-		    document.onfocusin = document.onfocusout = onchange;
-		  // All others:
-		  else
-		    window.onpageshow = window.onpagehide
-		    = window.onfocus = window.onblur = onchange;
-		})();
-
-		var url = "https://logix.newweb.page/boolchat"
-
 		function updateTheme(){
 			if(localStorage.getItem("dark")=="true"){
 				$('body').attr("dark",true)
@@ -31,19 +10,11 @@
 				$('body').removeAttr("dark")
 			}
 		}
-
-		function updateBoolchat() { 
-		  if(!document["hidden"]){
-			  $.get(url,function(data) { 
-			    $("#boolchat").prop('checked',(data.toLowerCase()=="true"))
-			    $("#boolchat").attr('title', data);
-			    setTimeout(updateBoolchat,(document["hidden"]!==undefined?5000:15000));
-			  });
-		  } else {
-		  	setTimeout(updateBoolchat,5000);
-		  }
+		boolchatWS = new WebSocket("wss://logix.newweb.page/boolchat");
+		boolchatWS.onmessage = function (event) {
+			$("#boolchat").prop('checked',(event.data.toLowerCase()=="true"))
+			$("#boolchat").attr('title', event.data);
 		}
-		updateBoolchat();
 		$(document).ready(function() {
 			updateTheme();
 			$(document).click(function(event) { 
@@ -55,7 +26,7 @@
 			});
 			$("#boolchat").click(function() {
 			  $("#boolchat").attr('title', this.checked.toString());
-			  $.post(url,{"boolchat":this.checked})
+			  boolchatWS.send(this.checked)
 			});
 		});
 	</script>
