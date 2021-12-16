@@ -30,7 +30,7 @@ var boolchat = {
 			boolchat.bodyBG.removeAttribute("dark");
 		}
 	},
-	toggleTheme: function() { 
+	toggleTheme: function() {
 		boolchat.darkMode = !boolchat.darkMode
 		localStorage.setItem("dark",boolchat.darkMode);
 		boolchat.updateTheme();
@@ -45,6 +45,11 @@ var boolchat = {
 		boolchat.darkMode = localStorage.getItem("dark")=="true";
 		boolchat.bodyBG = document.getElementById("bg");
 		boolchat.button = document.getElementById("boolchat");
+
+		boolchat.bodyBG.addEventListener('click', function(e) { //Firefox go brr
+			if(e.target&&e.target.id=="bg") boolchat.toggleTheme();
+		}, false);
+
 		boolchat.updateTheme();
 		boolchat.connect();
 	}
