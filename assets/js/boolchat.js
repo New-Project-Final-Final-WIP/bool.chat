@@ -1,4 +1,3 @@
-// This was a lot cleaner before prep for JanusXR
 var boolchat = {
 	state: false,
 	stateString: "False",
@@ -43,7 +42,7 @@ var boolchat = {
 		boolchat.ws.send(boolchat.state);
 	},
 	pageLoaded: function() {
-		darkMode = localStorage.getItem("dark")=="true";
+		boolchat.darkMode = localStorage.getItem("dark")=="true";
 		boolchat.bodyBG = document.getElementById("bg");
 		boolchat.button = document.getElementById("boolchat");
 		boolchat.updateTheme();

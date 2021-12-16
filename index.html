@@ -1,18 +1,10 @@
 <head>
 	<title>Boolchat</title>
 	<link rel="shortcut icon" href="https://www.newweb.page/assets/images/logo.png">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="./assets/js/boolchat.js"></script>
-	<script>
-		//JQuery?? Just for this???
-		// shhhh
-		$(document).ready(function() {
-			boolchat.pageLoaded();
-		});
-	</script>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-<body id="bg" onclick="boolchat.toggleTheme()">
+<body id="bg" onclick="boolchat.toggleTheme()" onload="boolchat.pageLoaded()">
 	<!--<FireBoxRoom>
 			<Assets>
 				<AssetImage id="linearCol" tex_linear="false" src="assets/JanusVR/textures/linear.png" tex_colorspace="linear"></AssetImage>
@@ -28,9 +20,6 @@
 				</Object>
 			</Room>
 		</FireBoxRoom>-->
-
-	<div id="clickStop">
 	<input type="checkbox" id="boolchat" title="Trualse (maybe)" onclick="boolchat.toggleBoolChat()">
 	<label id="check" for="boolchat"></label>
-	</div>
 </body>
