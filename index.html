@@ -2,51 +2,35 @@
 	<title>Boolchat</title>
 	<link rel="shortcut icon" href="https://www.newweb.page/assets/images/logo.png">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="./assets/js/boolchat.js"></script>
 	<script>
-		var boolchatWS;
-		function updateTheme(){
-			if(localStorage.getItem("dark")=="true"){
-				$('body').attr("dark",true)
-			} else {
-				$('body').removeAttr("dark")
-			}
-		}
-		function connect() {
-			boolchatWS = new WebSocket('wss://logix.newweb.page/boolchat');
-			boolchatWS.onmessage = function (event) {
-				$("#boolchat").prop('checked',(event.data.toLowerCase()=="true"))
-				$("#boolchat").attr('title', event.data);
-			}
-			boolchatWS.onclose = function(e) {
-				console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
-				setTimeout(function() {
-					connect();
-				}, 1000);
-			};
-		}
-
-		connect();
-
+		//JQuery?? Just for this???
+		// shhhh
 		$(document).ready(function() {
-			updateTheme();
-			$(document).click(function(event) { 
-			  var $target = $(event.target);
-			  if(!$target.closest('#clickStop').length) {
-			    localStorage.setItem("dark",localStorage.getItem("dark")!="true");
-			    updateTheme();
-			  }        
-			});
-			$("#boolchat").click(function() {
-			  $("#boolchat").attr('title', this.checked.toString());
-			  boolchatWS.send(this.checked)
-			});
+			boolchat.pageLoaded();
 		});
 	</script>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-<body>
+<body id="bg" onclick="boolchat.toggleTheme()">
+	<!--<FireBoxRoom>
+			<Assets>
+				<AssetImage id="linearCol" tex_linear="false" src="assets/JanusVR/textures/linear.png" tex_colorspace="linear"></AssetImage>
+				<AssetObject id="room" src="assets/JanusVR/models/room.obj" />
+				<AssetScript src="assets/js/boolchat.js" />
+				<AssetScript src="assets/JanusVR/scripts/main.js" />
+			</Assets>
+			<Room pos="-12 0 0" fwd="1 0 0" >
+				<Object js_id="room" id="room" locked="true" cull_face="back" visible="true" lighting="false" collision_id="room" pos="0.00 0.00 0.00" scale="1 1 1" col="#FFF" image_id="linearCol" onclick="boolchat.toggleTheme()">
+				</Object>
+				<Object js_id="button" id="cube" locked="true" cull_face="back" visible="true" lighting="false" collision_id="cube" pos="0.00 6 0.00" scale="4 4 4" col="#FFF" image_id="linearCol" onclick="boolchat.toggleBoolChat()" rotate_axis="0.2 0.75 0.5" rotate_deg_per_sec="12">
+					<Object js_id="button_outline" id="cube" locked="true" cull_face="front" visible="true" lighting="false" pos="0.00 0.00 0.00" scale="1.125 1.125 1.125" col="#000" image_id="linearCol" ></Object>
+				</Object>
+			</Room>
+		</FireBoxRoom>-->
+
 	<div id="clickStop">
-	<input type="checkbox" id="boolchat" title="Trualse (maybe)">
+	<input type="checkbox" id="boolchat" title="Trualse (maybe)" onclick="boolchat.toggleBoolChat()">
 	<label id="check" for="boolchat"></label>
 	</div>
 </body>
