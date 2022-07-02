@@ -5,7 +5,6 @@
   "display": "minimal-ui",
   "name": "BoolChat",
   "orientation": "any",
-  "scope": "/",
   "short_name": "BoolChat",
   "start_url": "/",
   "theme_color": "#000000",
