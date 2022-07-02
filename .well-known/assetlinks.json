@@ -1,6 +1,0 @@
-[{
-        "relation": ["delegate_permission/common.handle_all_urls"],
-        "target" : { "namespace": "android_app", "package_name": "chat.bool.twa",
-                     "sha256_cert_fingerprints": ["78:92:20:CB:FF:F3:11:40:0E:20:40:30:1F:36:DE:F1:62:BF:DE:90:07:A2:31:29:39:EC:B0:CE:3B:04:1F:9E"] }
-      }
-]
