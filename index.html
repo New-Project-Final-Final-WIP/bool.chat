@@ -1,9 +1,37 @@
 <head>
-	<title>Boolchat</title>
+	<title>BoolChat</title>
 	<link rel="shortcut icon" href="https://www.newweb.page/assets/images/logo.png">
 	<script src="./assets/js/boolchat.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link type="application/json+oembed" href="./assets/oembed.json" />
+
+	<link rel="manifest" href="manifest.json">
+
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="BoolChat">
+	<meta name="apple-mobile-web-app-title" content="BoolChat">
+	<meta name="theme-color" content="#000">
+	<meta name="msapplication-navbutton-color" content="#000">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="msapplication-starturl" content="/">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="icon" type="image/png" sizes="192x192" href="./assets/pwa/icon-192.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="192x192" href="./assets/pwa/icon-192.png">
+	<link rel="icon" type="image/png" sizes="256x256" href="./assets/pwa/icon-256.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="256x256" href="./assets/pwa/icon-256.png">
+	<link rel="icon" type="image/png" sizes="384x384" href="./assets/pwa/icon-384.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="384x384" href="./assets/pwa/icon-384.png">
+	<link rel="icon" type="image/png" sizes="512x512" href="./assets/pwa/icon-512.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="./assets/pwa/icon-512.png">
+
+
+	<script type="text/javascript">
+		if ('serviceWorker' in navigator) {
+		  navigator.serviceWorker.register('sw.js');
+		}
+	</script>
 </head>
 <body id="bg" onload="boolchat.pageLoaded()"  >
 	<!--<FireBoxRoom>
