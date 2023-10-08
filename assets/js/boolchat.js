@@ -3,7 +3,7 @@ var boolchat = {
 	stateString: "False",
 	darkMode: false,
 	connect: function() {
-		boolchat.ws = new WebSocket('wss://logix.newweb.page/boolchat');
+		boolchat.ws = new WebSocket('wss://api.newweb.page/boolchat');
 		boolchat.ws.onmessage = function (e) {
 			boolchat.state = (e.data.toLowerCase()=="true")
 			boolchat.stateString = e.data
