@@ -1,0 +1,39 @@
+:root{
+	--border: round(up, 0.2vmin, (1px));
+	/* Offset size to account for border */
+	--size: calc(100vmin - var(--border)*2);
+}
+body {
+	margin: 0;
+}
+label {
+	display: inline;
+}
+
+input[type=checkbox] {
+	display: none;
+}
+
+input[type=checkbox] + label {
+	background-color: #fff;
+	border: var(--border, 2px) solid #000;
+	display: inline-block;
+	width: var(--size, 128px);
+	height: var(--size, 128px);
+}
+input[type=checkbox]:hover + label {
+	background-color: #c7c7c7;
+}
+input[type=checkbox]:active + label {
+	background-color: #838383;
+}
+input[type=checkbox]:checked + label:after {
+	content: '';
+	background-image: url("checkmark.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	width: var(--size, 128px);
+	height: var(--size, 128px);
+	position: fixed;
+}

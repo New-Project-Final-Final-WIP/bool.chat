@@ -1,7 +1,7 @@
 <head>
 	<title>BoolChat</title>
 	<link rel="shortcut icon" href="https://www.newweb.page/assets/images/logo.png">
-	<script src="./assets/js/boolchat.js"></script>
+	<script src="./assets/scripts/website.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link type="application/json+oembed" href="./assets/oembed.json" />
 
@@ -33,7 +33,7 @@
 		}
 	</script>
 </head>
-<body id="bg" onload="boolchat.pageLoaded()"  >
+<body>
 	<!--<FireBoxRoom>
 			<Assets>
 				<AssetImage id="linearCol" tex_linear="false" src="assets/JanusVR/textures/linear.png" tex_colorspace="linear"></AssetImage>
@@ -49,6 +49,5 @@
 				</Object>
 			</Room>
 		</FireBoxRoom>-->
-	<input type="checkbox" id="boolchat" title="Trualse (maybe)" onclick="boolchat.toggleBoolChat()">
-	<label id="check" for="boolchat"></label>
+	<iframe width="128" height="128" scrolling="no" frameborder="0" src="./boolchat/boolchat.html"></iframe>
 </body>

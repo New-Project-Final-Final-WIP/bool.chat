@@ -9,39 +9,16 @@ body {
 body[dark] {
 	background: #000;
 }
-label {
-	display: inline;
-}
-
-input[type=checkbox] {
-	display: none;
-}
-
-input[type=checkbox] + label {
-	background-color: #fff;
-	border: 0.2vmin solid #000;
-	display: inline-block;
-	padding: 25vmin;
+iframe {
+	width: 50vmin;
+	height: 50vmin;
 	position: fixed; /* or absolute */
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-}
-input[type=checkbox]:hover + label {
-	background-color: #c7c7c7;
-}
-input[type=checkbox]:active + label {
-	background-color: #838383;
-}
-input[type=checkbox]:checked + label:after {
-	content: '';
-	width: 100%;
-	height: 100%;
-	background-image: url("checkmark.svg");
-	background-repeat: no-repeat;
-	background-position: center;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+
+	
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none; /* Standard syntax */
 }
